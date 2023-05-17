@@ -13,7 +13,26 @@ const wellKnownManufacturerOUIs = [
     ["48","B0","2D"]
 ]
 
-const possibleHexidecimal = ["A","B","C","D","E","F","0","1","2","3","4","5","6","7","8","9"];
+// const possibleHexidecimal = ["A","B","C","D","E","F","0","1","2","3","4","5","6","7","8","9"];
+
+const hexToBinaryDict = {
+    "0":"0000",
+    "1":"0001",
+    "2":"0010",
+    "3":"0011",
+    "4":"0100",
+    "5":"0101",
+    "6":"0110",
+    "7":"0111",
+    "8":"1000",
+    "9":"1001",
+    "A":"1010",
+    "B":"1011",
+    "C":"1100",
+    "D":"1101",
+    "E":"1110",
+    "F":"1111"
+}
 
 const getRandomNumber = (max) => {
     return Math.floor(Math.random() * max);
@@ -31,10 +50,10 @@ const generateMACID = () => {
 
     // Randomly selecting hexidecimals for the remaining three bytes
     for (let i = 0; i < 3; i++){
-        let randomNum1 = getRandomNumber(possibleHexidecimal.length - 1); 
-        let randomNum2 = getRandomNumber(possibleHexidecimal.length - 1);
+        let randomNum1 = getRandomNumber(16); 
+        let randomNum2 = getRandomNumber(16);
         
-        newMacID.push(`${possibleHexidecimal[randomNum1]}${possibleHexidecimal[randomNum2]}`);
+        newMacID.push(`${Object.keys(hexToBinaryDict)[randomNum1]}${Object.keys(hexToBinaryDict)[randomNum2]}`);
     }
 
     // Returning the new fake MAC address separated by :
@@ -46,6 +65,11 @@ const addNewMACID = () => {
     document.getElementById("macAddress").value = generateMACID();
 }
 
+// To convert hex to binary, we have to find the binary equivalent of each hex digit and them combine them together
+const hexidecimalToBinary = (hexidecimal) => {
+
+}
+
 const generateEUI64 = (cleanedMacAddress) => {
     // EUI-64 STEP 1: Split the 48-bit MAC address down the middle
     let OUI = cleanedMacAddress.slice(0, 3);
@@ -54,7 +78,14 @@ const generateEUI64 = (cleanedMacAddress) => {
     // EUI-64 STEP 2: The host puts "fffe", a special reserved value between these two addresses
     let newMacAddress = [...OUI, "FF", "FE", ...deviceID];
 
-    return newMacAddress.join(":");
+    // EUI-64 STEP 3: The seventh bit from the left is known as the Universally / Locally (U/L) assigned bit.
+    // A 0 means this was assigned by the IEEE; a 1 means it's locally administered
+    // In step 3, we have to inverse the seventh bit from the left
+    let firstEightDigits = newMacAddress[0];
+    let newBin = `${hexToBinaryDict[firstEightDigits[0]]}${hexToBinaryDict[firstEightDigits[1]]}`
+
+    //return newMacAddress.join(":");
+    return newBin;
 }
 
 const addNewEUI64 = () => {
