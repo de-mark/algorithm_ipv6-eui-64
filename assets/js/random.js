@@ -1,21 +1,39 @@
+const generateRandomID = () => {
+    let newRandomID = [];
+
+    for (let i = 0; i < 6; i++) {
+        // Uses getRandomNumber from "./assets/js/eui.js"
+        let randomNum1 = getRandomNumber(16); 
+        let randomNum2 = getRandomNumber(16);
+        
+        newRandomID.push(`${Object.keys(hexToBinaryDict)[randomNum1]}${Object.keys(hexToBinaryDict)[randomNum2]}`); 
+    }
+
+    return newRandomID.join(":");
+}
+
+const addNewRandomID = () => {
+    document.getElementById("generatedID").innerHTML = generateRandomID();
+}
+
 const addRandomPage = () => {
     document.getElementById("mainArea").innerHTML = `
-    <h4>Random Interface ID Generation!</h4>
+    <p>Most devices these days (namely modern Windows, Macs, and several Linux distros) will randomly generate an interface ID <b>without</b> using your MAC address</p>
+
+    <p>This works around the potential security risks inherent in EUI-643.</p>
                 
     <div id="generatedID">
-        <!-- NEW Interface ID will be added here -->
+        Enter a MAC to see an Interface ID
     </div>
     <div id="errorDiv">
-        <!-- Error Messages will be added here -->
     </div>
-
 
     <div class="inputGroup">
-        <p><b>Does Not Use MAC:</b></p>
+        <p><b>No input required:</b></p>
         <input type="text" id="macAddress" placeholder="MAC is not used to create Interface ID" disabled>
-        <button disabled>Generate a Random Mac Address For Me!</button>
+        <button disabled>Use Random MAC</button>
     </div>
     
-    <button>Generate!</button>
+    <button onclick="addNewRandomID()">Generate!</button>
     `
 }

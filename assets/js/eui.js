@@ -113,8 +113,6 @@ const addNewEUI64 = () => {
 
 const addEUI64GenPage = () => {
     document.getElementById("mainArea").innerHTML = `
-    <h4>EUI-64 Generation!</h4>
-
     <p><b>EUI-64</b> is the older way of dynamically generating an Interface ID.</p>
     <p>The algorithm used the device's MAC address to generate the Interface ID:</b>
     
