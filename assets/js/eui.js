@@ -13,8 +13,7 @@ const wellKnownManufacturerOUIs = [
     ["48","B0","2D"]
 ]
 
-// const possibleHexidecimal = ["A","B","C","D","E","F","0","1","2","3","4","5","6","7","8","9"];
-
+// Used to randomly create MAC and, during the EUI algorithm, to translate into binary and back
 const hexToBinaryDict = {
     "0":"0000",
     "1":"0001",
@@ -65,11 +64,6 @@ const addNewMACID = () => {
     document.getElementById("macAddress").value = generateMACID();
 }
 
-// To convert hex to binary, we have to find the binary equivalent of each hex digit and them combine them together
-const hexidecimalToBinary = (hexidecimal) => {
-
-}
-
 const generateEUI64 = (cleanedMacAddress) => {
     // EUI-64 STEP 1: Split the 48-bit MAC address down the middle
     let OUI = cleanedMacAddress.slice(0, 3);
@@ -113,4 +107,26 @@ const addNewEUI64 = () => {
     } else {
         document.getElementById("errorDiv").innerHTML = `<b>Error:</b> A MAC Address must have 6 Octets; Yours has ${cleanedMacAddress.length}`;
     }  
+}
+
+const addEUI64GenPage = () => {
+    document.getElementById("mainArea").innerHTML = `
+    <h4>EUI-64 Generation!</h4>
+                
+    <div id="generatedID">
+        <!-- NEW EUI will be added here -->
+    </div>
+    <div id="errorDiv">
+        <!-- Error Messages will be added here -->
+    </div>
+
+
+    <div class="inputGroup">
+        <p><b>MAC Address of Device:</b></p>
+        <input type="text" id="macAddress">
+        <button onclick="addNewMACID()">Generate a Random Mac Address For Me!</button>
+    </div>
+    
+    <button onclick="addNewEUI64()">Generate!</button>
+    `
 }

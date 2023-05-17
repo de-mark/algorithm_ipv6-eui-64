@@ -15,9 +15,11 @@ const buildPage = () => {
     clearTabClasses();
 
     if (current.algorithm){
-        document.getElementById("euiTab").classList.add("selected");
-    } else {
         document.getElementById("randomTab").classList.add("selected");
+    } else {
+        document.getElementById("euiTab").classList.add("selected");
+        // Located at the bottom of ./assets/js/eui.js
+        addEUI64GenPage();
     }
 }
 
