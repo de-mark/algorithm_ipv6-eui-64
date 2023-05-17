@@ -23,7 +23,7 @@ const addRandomPage = () => {
     <p>This works around the potential security risks inherent in EUI-643.</p>
                 
     <div id="generatedID">
-        Enter a MAC to see an Interface ID
+        Press button to generate a random interface ID!
     </div>
     <div id="errorDiv">
     </div>
