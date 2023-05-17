@@ -56,8 +56,8 @@ const generateMACID = () => {
         newMacID.push(`${Object.keys(hexToBinaryDict)[randomNum1]}${Object.keys(hexToBinaryDict)[randomNum2]}`);
     }
 
-    // Returning the new fake MAC address separated by :
-    return newMacID.join(":");
+    // Returning the new fake MAC address separated by -
+    return newMacID.join("-");
 }
 
 // This is what actually adds the generated MAC address to the page
@@ -78,21 +78,34 @@ const generateEUI64 = (cleanedMacAddress) => {
     // EUI-64 STEP 2: The host puts "fffe", a special reserved value between these two addresses
     let newMacAddress = [...OUI, "FF", "FE", ...deviceID];
 
-    // EUI-64 STEP 3: The seventh bit from the left is known as the Universally / Locally (U/L) assigned bit.
+    // EUI-64 STEP 3: The seventh bit from the left is known as the Universally / Locally (U/L) assigned bit. (Called the "u bit".)
     // A 0 means this was assigned by the IEEE; a 1 means it's locally administered
     // In step 3, we have to inverse the seventh bit from the left
     let firstEightDigits = newMacAddress[0];
-    let newBin = `${hexToBinaryDict[firstEightDigits[0]]}${hexToBinaryDict[firstEightDigits[1]]}`
+    let newBin = [...hexToBinaryDict[firstEightDigits[0]],
+    ...hexToBinaryDict[firstEightDigits[1]]]
 
-    //return newMacAddress.join(":");
-    return newBin;
+    newBin[6] = newBin[6] == "0" ? "1" : "0";
+    
+    // EUI-64 STEP 4: Translate the first eight bits back into hexidecimal
+    let firstBin = newBin.slice(0, 4).join("");
+    let secondBin = newBin.slice(4, 8).join("");
+
+    let firstHex = Object.entries(hexToBinaryDict).filter(([hex, bin]) => bin == firstBin)[0][0];
+    let secondHex = Object.entries(hexToBinaryDict).filter(([hex, bin]) => bin == secondBin)[0][0];
+
+    let newFirstEightDigits = `${firstHex}${secondHex}`;
+
+    newMacAddress[0] = newFirstEightDigits;
+
+    return newMacAddress.join(":");
 }
 
 const addNewEUI64 = () => {
     let rawMacAddress = document.getElementById("macAddress").value;
-    // Since MAC address bytes can be separated by other symbols as well, we're taking the extra step to replace all symbols with colons
-    rawMacAddress = rawMacAddress.replace(/[.,\/#!$%+\^&\*;:{}=\-_`~()]/g,":");
-    let cleanedMacAddress = rawMacAddress.split(":");
+    // Since MAC address bytes can be separated by other symbols as well, we're taking the extra step to replace all symbols with hyphen
+    rawMacAddress = rawMacAddress.replace(/[.,\/#!$%+\^&\*;:{}=\-_`~()]/g,"-").toUpperCase();
+    let cleanedMacAddress = rawMacAddress.split("-");
 
     if (cleanedMacAddress.length == 6){
         document.getElementById("errorDiv").innerHTML = "";
