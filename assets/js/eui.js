@@ -103,9 +103,11 @@ const addNewEUI64 = () => {
 
     if (cleanedMacAddress.length == 6){
         document.getElementById("errorDiv").innerHTML = "";
+        document.getElementById("errorDiv").classList.remove("hasError");
         document.getElementById("generatedID").innerHTML = generateEUI64(cleanedMacAddress);
     } else {
         document.getElementById("errorDiv").innerHTML = `<b>Error:</b> A MAC Address must have 6 Octets; Yours has ${cleanedMacAddress.length}`;
+        document.getElementById("errorDiv").classList.add("hasError");
     }  
 }
 
@@ -125,17 +127,16 @@ const addEUI64GenPage = () => {
     <p>Due to potential security risks, EUI-64 is not used for Interface ID creation by newer devices (with the exception of routers)</p>
                 
     <div id="generatedID">
-        <!-- NEW EUI will be added here -->
+        Enter a MAC to see an Interface ID
     </div>
     <div id="errorDiv">
-        <!-- Error Messages will be added here -->
     </div>
 
 
     <div class="inputGroup">
         <p><b>MAC Address of Device:</b></p>
         <input type="text" id="macAddress">
-        <button onclick="addNewMACID()">Generate a Random Mac Address For Me!</button>
+        <button onclick="addNewMACID()">Use Random MAC</button>
     </div>
     
     <button onclick="addNewEUI64()">Generate!</button>

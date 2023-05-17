@@ -1,7 +1,7 @@
 body {
     background-color: lightgrey;
-    height: 100vh;
-    overflow: hidden;
+    /* height: 100vh; */
+    /* overflow: hidden; */
 }
 
 header {
@@ -87,7 +87,8 @@ header {
 }
 .outerMain {
     background-color: #fff;
-    height: 100vh;
+    min-height: 65vh;
+    border-bottom: 1px solid #AAA;
 }
 
 #mainArea {
@@ -128,7 +129,7 @@ header {
 }
 
 #errorDiv {
-    display: block;
+    display: none;
     width: 60%;
     margin: 20px auto;
     padding: 10px;
@@ -137,8 +138,8 @@ header {
     border-radius: 15px;
 }
 
-#errorDiv:empty {
-    display: none;
+.hasError {
+    display: block !important;
 }
 
 button {
