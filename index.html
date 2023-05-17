@@ -16,21 +16,33 @@
         </div>
         <div>
             <div class="navigationTab">
-                <div class="tab" id="euiTab">
+                <div class="tab" id="euiTab" onclick="toggleAlgorithm()">
                     <h3>EUI-64</h3>
                     <p>Used by routers and older operating systems</p>
                 </div>
-                <div class="tab" id="randomTab">
+                <div class="tab" id="randomTab" onclick="toggleAlgorithm()">
                     <h3>Random 64 Address Configuration</h3>
                     <p>Used by most modern operating systems</p>
                 </div>
             </div>
-            <div>
+            <div id="mainArea">
+                <h4>EUI-64 Generation!</h4>
+                
+                <div class="inputGroup">
+                    <p><b>MAC Address of Device:</b></p>
+                    <input type="text" id="macAddress">
+                    <button onclick="addNewMACID()">Generate a Random Mac Address For Me!</button>
+                </div>
+                
+                <button>Generate!</button>
+            </div>
+            <div id="generatedID">
 
             </div>
         </div>
     </div>
 
+    <script src="./assets/js/generateDiv.js"></script>
     <script src="./assets/js/app.js"></script>
 </body>
 </html>

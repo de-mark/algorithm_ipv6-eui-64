@@ -28,6 +28,10 @@
     padding: 10px
 }
 
+.tab:hover {
+    cursor: pointer;
+}
+
 .tab:before,
 .tab:after {
     position: absolute;
@@ -71,3 +75,21 @@
     font-size: .85rem;
 }
 
+#mainArea {
+    padding-top: 50px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.inputGroup {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputGroup input {
+    width: 60%;
+}
