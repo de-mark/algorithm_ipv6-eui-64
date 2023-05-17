@@ -28,16 +28,21 @@
             <div id="mainArea">
                 <h4>EUI-64 Generation!</h4>
                 
+                <div id="generatedID">
+                    <!-- NEW EUI will be added here -->
+                </div>
+                <div id="errorDiv">
+                    <!-- Error Messages will be added here -->
+                </div>
+
+
                 <div class="inputGroup">
                     <p><b>MAC Address of Device:</b></p>
                     <input type="text" id="macAddress">
                     <button onclick="addNewMACID()">Generate a Random Mac Address For Me!</button>
                 </div>
                 
-                <button>Generate!</button>
-            </div>
-            <div id="generatedID">
-
+                <button onclick="addNewEUI64()">Generate!</button>
             </div>
         </div>
     </div>

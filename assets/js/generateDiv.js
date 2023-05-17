@@ -45,3 +45,16 @@ const generateMACID = () => {
 const addNewMACID = () => {
     document.getElementById("macAddress").value = generateMACID();
 }
+
+const generateEUI64 = (cleanedMacAddress) => {
+    return cleanedMacAddress;
+}
+
+const addNewEUI64 = () => {
+    let rawMacAddress = document.getElementById("macAddress").value;
+    // Since MAC address bytes can be separated by other symbols as well, we're taking the extra step to replace all symbols with colons
+    rawMacAddress = rawMacAddress.replace(/[.,\/#!$%+\^&\*;:{}=\-_`~()]/g,":");
+    let cleanedMacAddress = rawMacAddress.split(":");
+
+    document.getElementById("generatedID").innerHTML = generateEUI64(cleanedMacAddress);
+}
