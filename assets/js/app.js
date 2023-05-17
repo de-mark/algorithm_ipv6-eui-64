@@ -16,6 +16,8 @@ const buildPage = () => {
 
     if (current.algorithm){
         document.getElementById("randomTab").classList.add("selected");
+        // Located at the bottom of ./assets/js/random.js
+        addRandomPage();
     } else {
         document.getElementById("euiTab").classList.add("selected");
         // Located at the bottom of ./assets/js/eui.js

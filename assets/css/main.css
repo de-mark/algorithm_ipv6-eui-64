@@ -1,3 +1,14 @@
+body {
+    background-color: lightgrey;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    margin: 50px 0;
+    text-align: center;
+}
+
 .navigationTab {
     position: relative;
     text-align: center;
@@ -73,6 +84,10 @@
 
 .tab p {
     font-size: .85rem;
+}
+.outerMain {
+    background-color: #fff;
+    height: 100vh;
 }
 
 #mainArea {
