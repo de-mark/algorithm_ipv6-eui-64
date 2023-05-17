@@ -97,6 +97,15 @@ header {
     text-align: center;
 }
 
+.euiSteps {
+    margin: 20px 0;
+    font-size: .85rem;
+}
+
+.euiSteps p {
+    margin: 5px 0;
+}
+
 .inputGroup {
     width: 90%;
     margin: 0 auto;
@@ -107,4 +116,23 @@ header {
 
 .inputGroup input {
     width: 60%;
+}
+
+button {
+    padding: 8px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: lightgrey;
+    color: #000;
+}
+
+button:disabled {
+    background-color: darkgrey;
+    color: #4a4a4a;
 }
