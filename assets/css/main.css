@@ -118,6 +118,29 @@ header {
     width: 60%;
 }
 
+#generatedID {
+    width: 60%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: lightgrey;
+    letter-spacing: .1rem;
+    border-radius: 15px;
+}
+
+#errorDiv {
+    display: block;
+    width: 60%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: lightcoral;
+    letter-spacing: .1rem;
+    border-radius: 15px;
+}
+
+#errorDiv:empty {
+    display: none;
+}
+
 button {
     padding: 8px;
     border: none;
