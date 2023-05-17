@@ -1,0 +1,73 @@
+.navigationTab {
+    position: relative;
+    text-align: center;
+}
+
+.navigationTab:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #AAA;
+    z-index: 1;
+}
+
+.navigationTab:before {
+    z-index: 1;
+}
+
+.tab {
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    border: 1px solid #AAA;
+    border-top-left-radius: 6px;
+    border-top-right-radius:6px;
+    background-color: #ECECEC;
+    padding: 10px
+}
+
+.tab:before,
+.tab:after {
+    position: absolute;
+    bottom: -1px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid #AAA;
+    content: " ";
+}
+
+.tab:before {
+    left: -6px;
+    border-bottom-right-radius: 6px;
+    border-width: 0 1px 1px 0;
+    box-shadow: 2px 2px 0 #ECECEC;
+}
+
+.tab:after {
+    right: -6px;
+    border-bottom-left-radius: 6px;
+    border-width: 0 0 1px 1px;
+    box-shadow: -2px 2px 0 #ECECEC;
+}
+
+.tab.selected {
+    z-index: 2;
+    background: #FFF;
+    color: #000;
+    border-bottom-color: #FFF;
+}
+
+.tab.selected:before {
+    box-shadow: 2px 2px 0 #FFF;
+}
+
+.tab.selected:after {
+    box-shadow: 2px 2px 0 #FFF;
+}
+
+.tab p {
+    font-size: .85rem;
+}
+
